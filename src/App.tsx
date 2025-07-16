@@ -1,26 +1,37 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import { SwipeProvider } from './contexts/SwipeContext';
-import { MatchProvider } from './contexts/MatchContext';
-import { Layout } from './components/layout/Layout';
-import { ProtectedRoute } from './components/auth/ProtectedRoute';
-import { Login } from './pages/Login';
-import { SwipePage } from './pages/SwipePage';
-import { MatchesPage } from './pages/MatchesPage';
-import { ChatPage } from './pages/ChatPage';
-import { ProfilePage } from './pages/ProfilePage';
-import { NotFound } from './pages/NotFound';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { SwipeProvider } from "./contexts/SwipeContext";
+import { MatchProvider } from "./contexts/MatchContext";
+import { Layout } from "./components/layout/Layout";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import { Login } from "./pages/Login";
+import { SwipePage } from "./pages/SwipePage";
+import { MatchesPage } from "./pages/MatchesPage";
+import { ChatPage } from "./pages/ChatPage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
+  // Determine basename based on environment
+  const basename =
+    import.meta.env.MODE === "production" ? "/food-swipper-example" : "/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <AuthProvider>
         <MatchProvider>
           <SwipeProvider>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Layout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route index element={<SwipePage />} />
                 <Route path="matches" element={<MatchesPage />} />
                 <Route path="chat/:matchId" element={<ChatPage />} />
@@ -36,3 +47,4 @@ function App() {
 }
 
 export default App;
+
