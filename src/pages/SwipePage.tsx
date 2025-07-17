@@ -50,10 +50,15 @@ export const SwipePage: React.FC = () => {
       <div className="flex-1 flex flex-col items-center justify-center">
         <RestaurantCard 
           restaurant={currentRestaurant} 
-          onInfo={() => setShowDetails(true)} 
+          onInfo={() => setShowDetails(true)}
+          onLike={like}
+          onDislike={dislike}
         />
         
-        <SwipeActions onLike={like} onDislike={dislike} />
+        {/* Desktop SwipeActions - hidden on mobile */}
+        <div className="hidden md:block">
+          <SwipeActions onLike={like} onDislike={dislike} />
+        </div>
       </div>
       
       {showDetails && (

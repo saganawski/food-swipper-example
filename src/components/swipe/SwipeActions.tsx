@@ -19,10 +19,10 @@ export const SwipeActions: React.FC<SwipeActionsProps> = ({ onLike, onDislike })
       
       <button 
         onClick={onLike}
-        className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg border border-gray-200 hover:bg-gray-50 transition-transform hover:scale-110"
+        className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg border border-green-200 hover:bg-gray-50 transition-transform hover:scale-110"
         aria-label="Like"
       >
-        <Heart size={32} className="text-primary-500" />
+        <Heart size={32} className="text-green-500" />
       </button>
     </div>
   );
