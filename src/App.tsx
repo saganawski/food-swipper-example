@@ -11,6 +11,8 @@ import { MatchesPage } from "./pages/MatchesPage";
 import { ChatPage } from "./pages/ChatPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { NotFound } from "./pages/NotFound";
+import InstallPrompt from "./components/pwa/InstallPrompt";
+import OfflineIndicator from "./components/pwa/OfflineIndicator";
 
 function App() {
   // Determine basename based on environment
@@ -39,6 +41,8 @@ function App() {
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <InstallPrompt />
+            <OfflineIndicator />
           </SwipeProvider>
         </MatchProvider>
       </AuthProvider>
