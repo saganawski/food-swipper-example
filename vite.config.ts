@@ -2,8 +2,11 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig(({ command }) => {
-  const base = command === "build" ? "/food-swipper-example/" : "/";
+export default defineConfig(({ command, mode }) => {
+  // Use GitHub Pages base path only for production deployment, not for local preview
+  const base = (command === "build" && mode === "production" && process.env.GITHUB_PAGES) 
+    ? "/food-swipper-example/" 
+    : "/";
 
   return {
     plugins: [
