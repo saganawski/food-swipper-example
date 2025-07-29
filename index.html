@@ -2,36 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/food-swipper-example/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FoodSwipe Application</title>
-    
+    <title>FoodSwipe - Restaurant Matcher</title>
+
     <!-- PWA Meta Tags -->
-    <meta name="description" content="Swipe through local restaurants and match with partners to find dining options together" />
+    <meta
+      name="description"
+      content="Swipe through local restaurants and match with partners to find dining options together"
+    />
     <meta name="theme-color" content="#f97316" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="FoodSwipe" />
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/food-swipper-example/manifest.json" />
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // https://github.com/rafrex/spa-github-pages
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-    </script>
-    <script type="module" crossorigin src="/food-swipper-example/assets/index-DyZzzyBp.js"></script>
-    <link rel="stylesheet" crossorigin href="/food-swipper-example/assets/index-ZGyAnSID.css">
-  <link rel="manifest" href="/food-swipper-example/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/food-swipper-example/registerSW.js"></script></head>
+
+    <link rel="manifest" href="/food-swipper-example/manifest.webmanifest" />
+    <script type="module" crossorigin src="/food-swipper-example/assets/index-D378tTXz.js"></script>
+    <link rel="stylesheet" crossorigin href="/food-swipper-example/assets/index-pW6LaBpi.css">
+  <script id="vite-plugin-pwa:register-sw" src="/food-swipper-example/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
   </body>
