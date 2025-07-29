@@ -6,8 +6,11 @@ import './index.css';
 // Register service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js', {
-      scope: '/'
+    const basePath = import.meta.env.BASE_URL;
+    const swPath = `${basePath}sw.js`.replace('//', '/');
+    
+    navigator.serviceWorker.register(swPath, {
+      scope: basePath
     }).then((registration) => {
       console.log('SW registered: ', registration);
     }).catch((registrationError) => {

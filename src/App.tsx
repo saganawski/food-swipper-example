@@ -15,9 +15,8 @@ import InstallPrompt from "./components/pwa/InstallPrompt";
 import OfflineIndicator from "./components/pwa/OfflineIndicator";
 
 function App() {
-  // Determine basename based on environment
-  const basename =
-    import.meta.env.MODE === "production" ? "/food-swipper-example" : "/";
+  // Determine basename based on environment - should match vite.config.ts logic
+  const basename = import.meta.env.BASE_URL;
 
   return (
     <BrowserRouter basename={basename}>
