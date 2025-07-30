@@ -13,39 +13,49 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { NotFound } from "./pages/NotFound";
 import InstallPrompt from "./components/pwa/InstallPrompt";
 import OfflineIndicator from "./components/pwa/OfflineIndicator";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { debug } from "./utils/debug";
 
 function App() {
   // Determine basename based on environment - should match vite.config.ts logic
   const basename = import.meta.env.BASE_URL;
 
+  debug.log('PWA Debug', 'App component rendered');
+  debug.log('PWA Debug', 'Router basename:', basename);
+  debug.log('PWA Debug', 'Current pathname:', window.location.pathname);
+  debug.log('PWA Debug', 'Current search:', window.location.search);
+  debug.log('PWA Debug', 'Current hash:', window.location.hash);
+
   return (
-    <BrowserRouter basename={basename}>
-      <AuthProvider>
-        <MatchProvider>
-          <SwipeProvider>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
-                    <Layout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<SwipePage />} />
-                <Route path="matches" element={<MatchesPage />} />
-                <Route path="chat/:matchId" element={<ChatPage />} />
-                <Route path="profile" element={<ProfilePage />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <InstallPrompt />
-            <OfflineIndicator />
-          </SwipeProvider>
-        </MatchProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter basename={basename}>
+        <AuthProvider>
+          <MatchProvider>
+            <SwipeProvider>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <Layout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<SwipePage />} />
+                  <Route path="matches" element={<MatchesPage />} />
+                  <Route path="chat/:matchId" element={<ChatPage />} />
+                  <Route path="profile" element={<ProfilePage />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <InstallPrompt />
+              <OfflineIndicator />
+            </SwipeProvider>
+          </MatchProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

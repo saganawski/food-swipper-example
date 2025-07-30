@@ -15,11 +15,38 @@ export default defineConfig(({ command, mode }) => {
       VitePWA({
         registerType: "autoUpdate",
         includeAssets: ["icon.svg", "icon-192.png"],
-        manifest: false, // Use the existing manifest.json file
+        manifest: {
+          name: "FoodSwipe - Restaurant Matcher",
+          short_name: "FoodSwipe",
+          description: "Swipe through local restaurants and match with partners to find dining options together",
+          start_url: base,
+          display: "standalone",
+          background_color: "#ffffff",
+          theme_color: "#f97316",
+          orientation: "portrait",
+          scope: base,
+          categories: ["food", "lifestyle", "social"],
+          icons: [
+            {
+              src: `${base}icon.svg`,
+              sizes: "any",
+              type: "image/svg+xml"
+            },
+            {
+              src: `${base}icon-192.png`,
+              sizes: "192x192",
+              type: "image/png"
+            }
+          ]
+        },
         workbox: {
           globPatterns: ["**/*.{js,css,html,ico,png,svg,json,txt,woff2}"],
           navigateFallback: "index.html",
+          navigateFallbackDenylist: [/^\/_/, /^\/[^/?]+\.[^/]+$/],
           cleanupOutdatedCaches: true,
+          additionalManifestEntries: [
+            { url: '404.html', revision: null }
+          ],
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -68,7 +95,6 @@ export default defineConfig(({ command, mode }) => {
         devOptions: {
           enabled: true,
         },
-        // Use existing manifest.webmanifest file
         manifestFilename: "manifest.webmanifest",
         useCredentials: false,
         injectRegister: "auto",
